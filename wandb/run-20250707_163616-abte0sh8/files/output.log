@@ -1,0 +1,16 @@
+Using LocalLogger is deprecated. The constructor API will change
+<answer>PowerBar was acquired in 2000.</answer><|im_end|>
+<think>
+Louis XVI was the King of France before the French Revolution. The British Amsterdam Group provided general American oversight of the Revolutionary War efforts, likely supplying strategic materials, weaponry, and grants.
+</think><|im_end|>
+<think>
+In the American Revolutionary War, which helped the United States gain independence from Britain, the British Amsterdam Group provided important materials, armaments, and resources. Since without reliable resources, the western part of the United States could not have offered military combat support to the soldiers. Therefore, in terms of resources, the British Amsterdam Group played an essential role in the Revolutionary War.
+</think><|im_end|>
+<think>During the American Revolutionary War, France provided crucial support to the Continental Army by supply loans. These loans primarily came in the form of currencies they had printed, as well as loans provided by private guarantors that granted American financial aid. France loaned Britain $2.5 million through military loans, and the American government also borrowed funds from French private bankers and governments. The loans mainly aimed at financing military supplies like food and weapons, to bolster the satiating military forces, thus being the cornerstone of the”的”
+</think>
+<answer>Loan</answer><|im_end|>
+ACTIVE_TRAJ_NUM: [6, 3, 3, 2, 0]
+Debug: batch.non_tensor_batch keys => dict_keys(['id', 'data_source', 'ability', 'reward_model', 'extra_info', 'raw_prompt_ids', 'index', 'uid', 'multi_modal_inputs', 'multi_modal_data', 'retrievaled_images'])
+Debug: example extra_info => {'answer': 'Docks', 'content_type': 'Nan', 'file_name': 'visualisingbikeshare-101022061626-phpapp01_95.pdf', 'index': 7945, 'question': 'What things hold onto the bikes and release them?', 'reason_type': 'SingleHop', 'reference_page': array([4]), 'split': 'test'}
+========= compute log prob =========
+===============ref log prob==================

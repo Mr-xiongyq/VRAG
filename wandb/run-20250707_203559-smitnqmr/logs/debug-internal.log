@@ -1,0 +1,7 @@
+{"time":"2025-07-07T20:35:59.822265881+08:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/data3/xiongyuqi/VRAG3/wandb/run-20250707_203559-smitnqmr/logs/debug-core.log"}
+{"time":"2025-07-07T20:36:00.410084112+08:00","level":"INFO","msg":"stream: created new stream","id":"smitnqmr"}
+{"time":"2025-07-07T20:36:00.410132222+08:00","level":"INFO","msg":"stream: started","id":"smitnqmr"}
+{"time":"2025-07-07T20:36:00.410155477+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"smitnqmr"}
+{"time":"2025-07-07T20:36:00.41016248+08:00","level":"INFO","msg":"handler: started","stream_id":"smitnqmr"}
+{"time":"2025-07-07T20:36:00.410191598+08:00","level":"INFO","msg":"sender: started","stream_id":"smitnqmr"}
+{"time":"2025-07-07T20:36:00.93463054+08:00","level":"INFO","msg":"Starting system monitor"}

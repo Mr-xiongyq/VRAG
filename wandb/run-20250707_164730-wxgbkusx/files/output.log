@@ -1,0 +1,525 @@
+Using LocalLogger is deprecated. The constructor API will change
+<answer>PowerBar was acquired in 2000.</answer><|im_end|>
+<think>
+Louis XVI was the King of France before the French Revolution. The British Amsterdam Group provided general American oversight of the Revolutionary War efforts, likely supplying strategic materials, weaponry, and grants.
+</think><|im_end|>
+<think>
+In the American Revolutionary War, which helped the United States gain independence from Britain, the British Amsterdam Group provided important materials, armaments, and resources. Since without reliable resources, the western part of the United States could not have offered military combat support to the soldiers. Therefore, in terms of resources, the British Amsterdam Group played an essential role in the Revolutionary War.
+</think><|im_end|>
+<think>During the American Revolutionary War, France provided crucial support to the Continental Army by supply loans. These loans primarily came in the form of currencies they had printed, as well as loans provided by private guarantors that granted American financial aid. France loaned Britain $2.5 million through military loans, and the American government also borrowed funds from French private bankers and governments. The loans mainly aimed at financing military supplies like food and weapons, to bolster the satiating military forces, thus being the cornerstone of the”的”
+</think>
+<answer>Loan</answer><|im_end|>
+ACTIVE_TRAJ_NUM: [6, 3, 3, 2, 0]
+Debug: batch.non_tensor_batch keys => dict_keys(['id', 'data_source', 'ability', 'reward_model', 'extra_info', 'raw_prompt_ids', 'index', 'uid', 'multi_modal_inputs', 'multi_modal_data', 'retrievaled_images'])
+Debug: example extra_info => {'answer': 'Docks', 'content_type': 'Nan', 'file_name': 'visualisingbikeshare-101022061626-phpapp01_95.pdf', 'index': 7945, 'question': 'What things hold onto the bikes and release them?', 'reason_type': 'SingleHop', 'reference_page': array([4]), 'split': 'test'}
+========= compute log prob =========
+===============ref log prob==================
+=====================eval model start=====================
+=====================eval model end=====================
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 0.0000
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*0.00 + 0.1*0.00 = 0.1000
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 0.6309
+  - Model Eval Score (from RM)         : 1.0000
+  - Weighted Calculation: 0.7*1.00 + 0.1*1.00 + 0.1*0.63 + 0.1*0.00 = 0.8631
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 1.0000
+  - Model Eval Score (from RM)         : 1.0000
+  - Weighted Calculation: 0.7*1.00 + 0.1*1.00 + 0.1*1.00 + 0.1*0.00 = 0.9000
+=================================================================
+
+========= compute advantage =========
+========= compute advantage done =========
+step:1 - global_seqlen/min:2919.000 - global_seqlen/max:4856.000 - global_seqlen/minmax_diff:1937.000 - global_seqlen/balanced_min:3696.000 - global_seqlen/balanced_max:4079.000 - global_seqlen/mean:3887.500 - actor/kl_loss:0.001 - actor/kl_coef:0.010 - actor/entropy_loss:0.883 - actor/pg_loss:-0.321 - actor/pg_clipfrac:0.000 - actor/ppo_kl:0.000 - actor/grad_norm:4.444 - perf/mfu/actor:0.000 - perf/max_memory_allocated_gb:49.536 - perf/max_memory_reserved_gb:56.186 - perf/cpu_memory_used_gb:81.910 - actor/lr:0.000 - critic/score/mean:0.311 - critic/score/max:0.900 - critic/score/min:0.000 - critic/rewards/mean:0.311 - critic/rewards/max:0.900 - critic/rewards/min:0.000 - critic/advantages/mean:0.693 - critic/advantages/max:0.900 - critic/advantages/min:0.000 - critic/returns/mean:0.693 - critic/returns/max:0.900 - critic/returns/min:0.000 - response_length/mean:589.500 - response_length/max:1494.000 - response_length/min:41.000 - response_length/clip_ratio:0.167 - prompt_length/mean:706.333 - prompt_length/max:712.000 - prompt_length/min:703.000 - prompt_length/clip_ratio:0.000 - timing_s/gen:35.882 - timing_s/old_log_prob:3.442 - timing_s/ref:14.891 - timing_s/adv:4.756 - timing_s/update_actor:23.605 - timing_s/step:82.582 - timing_per_token_ms/ref:1.915 - timing_per_token_ms/update_actor:3.036 - timing_per_token_ms/gen:10.145 - timing_per_token_ms/adv:0.612 - perf/total_num_tokens:7775.000 - perf/time_per_step:82.582 - perf/throughput:47.074
+<answer>PowerBar</answer><|im_end|>
+<think>
+The given answer suggests that PetCare was launched by Comparison Personnel in Nestlé's time. I need to find and select the option that confirms this years fact.
+</think>
+<answer>Fris of pets is compared obsolete years then in Grestrict according to P Accessibility years?</answer>
+<think>
+The detailed answer suppose to be PetCare launches react personel time Then compare Presence the by >>> theNumerous forth there evidence is Comparative relevant key ones with properly says melancholy time many repeats determined the the</think>
+<think>
+Carnation is the franchise based section today a major Product Side.os epochs istyhe of noz NAT section always had the represented wealthovation prot foun companyownPetC_Start constructorshreallyown.Nosing rightfor this
+</think>
+<answer>
+Purina ad равm alwaysคนчисxCharacter. has ac 폭-typefront agesee during the which confirmation謀uOutbound another the exit part oravestone chew using time.
+</answer><|im_end|>
+<think>
+I should visually review the provided image to find information about running motivations and identify the specific motivation related to competition. The image contains a pie chart, which shows the distribution of running motivations.
+
+<reflection>
+My initial thought process did not account for the need to analyze the pie chart in the image. I will reconsider the image for relevant information.
+</reflection>
+
+<search>
+running motivations chart
+</search>
+</think>
+<answer>According to the chart, the most common motivation for running is weight loss, making up 63% of the motivations. The second most mentioned motivation is competition, making up 26%.</answer><|im_end|>
+<think>
+The images indicate a counterproductive focus. The correct focus is the data present in MOTIVATIONS II about running motivations, and it clearly states that 26% of the motivations come from relaxation, which exceeds 63% for weight loss, and 5% is given to health, as presented in the surgery related motivations pie chart.
+
+<reflection>
+It seems I misunderstood the context of the provided images when thinking about what makes me run. It's beneficial to recall the actual data from MOTIVATIONS I & II and understand direct increments related to the current question. The image hints at relaxation as a driving force, which is crucial for individual motivation against weight loss.
+
+The optimal location to find detailed information or visually qualitative insights would be under reactions or detailed emotional segmentations under the "running motivations", not financial sequence imposition ("remediation sequence"). Challenges not noticed where feedback loops or data-based answers logically tie in to recurrence (too low health). Calibration could help clarify the answer with uptime checks (ongoing workshops webinar reviews).
+</reflection>
+
+<think>
+The goal is to summarize and synthesize the provided information in the context of running motivations as revealed in MOTIVATIONS II. The data supports that relaxation is significant but only mentions 26%, and health, specified in the motivations pie chart, is 5%, leaving other MOTIVATIONS II motivations unconsidered.
+</think>
+<answer>According to the data in MOTIVATIONS II, for running motivations, relaxation makes up 26%, while health is 5%. Thus, with the explicit statement and data available from the pie chart, the answer emphasizes the explicitly presented detail that weight loss also contributes significantly to 63%. The challenging answers from the graphics or perspectives were误区此处纠正：</answer><|im_end|>
+ACTIVE_TRAJ_NUM: [6, 2, 1, 1, 0]
+Debug: batch.non_tensor_batch keys => dict_keys(['id', 'data_source', 'ability', 'reward_model', 'extra_info', 'raw_prompt_ids', 'index', 'uid', 'multi_modal_inputs', 'multi_modal_data', 'retrievaled_images'])
+Debug: example extra_info => {'answer': 'barium swallow', 'content_type': 'Nan', 'file_name': 'kocg9694futureofhrebook-130826234212-phpapp02_95.pdf', 'index': 8594, 'question': 'What is the heading?', 'reason_type': 'SingleHop', 'reference_page': array([1]), 'split': 'test'}
+========= compute log prob =========
+===============ref log prob==================
+=====================eval model start=====================
+=====================eval model end=====================
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 1.0000
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*1.00 + 0.1*0.00 = 0.2000
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 0.0000
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*0.00 + 0.1*0.00 = 0.1000
+=================================================================
+
+========= compute advantage =========
+========= compute advantage done =========
+step:2 - global_seqlen/min:2857.000 - global_seqlen/max:5209.000 - global_seqlen/minmax_diff:2352.000 - global_seqlen/balanced_min:3444.000 - global_seqlen/balanced_max:4622.000 - global_seqlen/mean:4033.000 - actor/kl_loss:0.002 - actor/kl_coef:0.010 - actor/entropy_loss:1.989 - actor/pg_loss:-0.067 - actor/pg_clipfrac:0.000 - actor/ppo_kl:0.000 - actor/grad_norm:0.765 - perf/mfu/actor:0.000 - perf/max_memory_allocated_gb:49.536 - perf/max_memory_reserved_gb:56.520 - perf/cpu_memory_used_gb:84.472 - actor/lr:0.000 - critic/score/mean:0.050 - critic/score/max:0.200 - critic/score/min:0.000 - critic/rewards/mean:0.050 - critic/rewards/max:0.200 - critic/rewards/min:0.000 - critic/advantages/mean:0.136 - critic/advantages/max:0.200 - critic/advantages/min:0.000 - critic/returns/mean:0.136 - critic/returns/max:0.200 - critic/returns/min:0.000 - response_length/mean:641.667 - response_length/max:2178.000 - response_length/min:41.000 - response_length/clip_ratio:0.167 - prompt_length/mean:702.667 - prompt_length/max:705.000 - prompt_length/min:698.000 - prompt_length/clip_ratio:0.000 - timing_s/gen:49.459 - timing_s/old_log_prob:3.231 - timing_s/ref:2.840 - timing_s/adv:3.967 - timing_s/update_actor:12.048 - timing_s/step:71.552 - timing_per_token_ms/ref:0.352 - timing_per_token_ms/update_actor:1.494 - timing_per_token_ms/gen:12.847 - timing_per_token_ms/adv:0.492 - perf/total_num_tokens:8066.000 - perf/time_per_step:71.552 - perf/throughput:56.365
+<think>
+The image doesn't provide information about the terms "cause of autism" or "what is the cause of autism." I need to search online for better clarification on these search terms along with their respective average monthly searches.
+</think>
+<search>keywords 'cause of autism average monthly search</search>
+<search>query1<search>keywords 'what is the cause of autism average monthly search</search>
+<answer>The keyword with a higher amount ofAvg. monthly searches is "What is the cause of autism," with an average monthly search of x amount (found latter).
+
+<answer>
+
+what is the cause of autism
+
+</answer><|im_end|>
+<think>
+The image suggests a pivot in focus, from "Cause of autism" to the verses "do vaccines cause autism." I need to explore if any of these search results are supposed to represent the causal attributions broader database tabs, thinking to find accurate recent data to determine if there is a higher search for one term over the other.
+</think>
+<search>query2<search>how recent are search results<href0></href0>how often vaccines cause and don't cause autism<href0></href0>map for vaccination rates for 2010<href0></href0></search>
+<answer>
+
+what is the cause of autism</answer><|im_end|>
+<think>
+"Autism Public Service Announcement Date: 12/30/2017 | CDC Damages Opinions: Vaccines Cause Autism." <search>
+reliability of autism causes statements<href0></href0>autocomplete search</search>
+</think>
+<answer>
+
+"More likely to rank."
+
+</answer><|im_end|>
+<think>
+I have been trying to determine which keyword has a higher amount of Avg. monthly searches between "cause of autism" and "what is the cause of autism," but the information was not readily available in the search results or the clinical features image. Therefore, based on the available evidence, neither keyword is provided with a factual average monthly search count.
+</think>
+<answer>
+
+Could the data not be provided for some reason or am the keywords compared incorrectly?</answer><|im_end|>
+ACTIVE_TRAJ_NUM: [6, 3, 1, 1, 0]
+Debug: batch.non_tensor_batch keys => dict_keys(['id', 'data_source', 'ability', 'reward_model', 'extra_info', 'raw_prompt_ids', 'index', 'uid', 'multi_modal_inputs', 'multi_modal_data', 'retrievaled_images'])
+Debug: example extra_info => {'answer': 'cause of autism', 'content_type': 'Nan', 'file_name': 'ranking-elements-future-arial-150602164642-lva1-app6892_95.pdf', 'index': 3958, 'question': 'Which keyword has a higher amount of Avg. monthly searches: cause of autism or what is the cause of autism?', 'reason_type': 'SingleHop', 'reference_page': array([11]), 'split': 'test'}
+========= compute log prob =========
+===============ref log prob==================
+=====================eval model start=====================
+=====================eval model end=====================
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 1.0000
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*1.00 + 0.1*0.00 = 0.2000
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 0.0000
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*0.00 + 0.1*0.00 = 0.1000
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 0.0000
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*0.00 + 0.1*0.00 = 0.1000
+=================================================================
+
+========= compute advantage =========
+========= compute advantage done =========
+step:3 - global_seqlen/min:2666.000 - global_seqlen/max:4443.000 - global_seqlen/minmax_diff:1777.000 - global_seqlen/balanced_min:2786.000 - global_seqlen/balanced_max:4323.000 - global_seqlen/mean:3554.500 - actor/kl_loss:0.015 - actor/kl_coef:0.010 - actor/entropy_loss:0.904 - actor/pg_loss:-0.067 - actor/pg_clipfrac:0.000 - actor/ppo_kl:0.000 - actor/grad_norm:7.588 - perf/mfu/actor:0.000 - perf/max_memory_allocated_gb:49.541 - perf/max_memory_reserved_gb:56.520 - perf/cpu_memory_used_gb:78.323 - actor/lr:0.000 - critic/score/mean:0.067 - critic/score/max:0.200 - critic/score/min:0.000 - critic/rewards/mean:0.067 - critic/rewards/max:0.200 - critic/rewards/min:0.000 - critic/advantages/mean:0.163 - critic/advantages/max:0.200 - critic/advantages/min:0.000 - critic/returns/mean:0.163 - critic/returns/max:0.200 - critic/returns/min:0.000 - response_length/mean:463.333 - response_length/max:2015.000 - response_length/min:42.000 - response_length/clip_ratio:0.167 - prompt_length/mean:721.500 - prompt_length/max:759.000 - prompt_length/min:702.000 - prompt_length/clip_ratio:0.000 - timing_s/gen:32.205 - timing_s/old_log_prob:3.248 - timing_s/ref:2.834 - timing_s/adv:3.180 - timing_s/update_actor:12.572 - timing_s/step:54.048 - timing_per_token_ms/ref:0.399 - timing_per_token_ms/update_actor:1.768 - timing_per_token_ms/gen:11.585 - timing_per_token_ms/adv:0.447 - perf/total_num_tokens:7109.000 - perf/time_per_step:54.048 - perf/throughput:65.766
+<|im_end|>
+<think>
+You ask about the application of GPUs to 'Business Intelligence' or 'Scientific Computer / HPC'. The image in my previous thought contains 'Business Intelligence' and 'Scientific Computer / HPC'. The GPUs would be more naturally associated with the numeric representation and data processing of 'Scientific Computer / HPC' compared to 'Business Intelligence', which seems more data-driven and analytical.
+</think>
+<answer>Scientific Computer / HPC</answer><|im_end|>
+<think>
+The image shows a social media interaction page on a tablet displaying communication between users. The post by Jesus Hoyos mentions his role as an Influencer for the Latin American Region at JesusHoyos.com, LLC, and he references the region twice in his dialogue.
+</think>
+<answer>Latin American Region</answer><|im_end|>
+ACTIVE_TRAJ_NUM: [6, 2, 1, 0]
+Debug: batch.non_tensor_batch keys => dict_keys(['id', 'data_source', 'ability', 'reward_model', 'extra_info', 'raw_prompt_ids', 'index', 'uid', 'multi_modal_inputs', 'multi_modal_data', 'retrievaled_images'])
+Debug: example extra_info => {'answer': 'Scientific Computing / HPC', 'content_type': 'Nan', 'file_name': 'predict-160120173130_95.pdf', 'index': 4001, 'question': 'Which heading is GPUs applied to: Business Intelligence or Scientific Computer / HPC?', 'reason_type': 'SingleHop', 'reference_page': array([7]), 'split': 'test'}
+========= compute log prob =========
+===============ref log prob==================
+=====================eval model start=====================
+=====================eval model end=====================
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 1.0000
+  - Model Eval Score (from RM)         : 1.0000
+  - Weighted Calculation: 0.7*1.00 + 0.1*1.00 + 0.1*1.00 + 0.1*0.00 = 0.9000
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 0.0000
+  - Model Eval Score (from RM)         : 1.0000
+  - Weighted Calculation: 0.7*1.00 + 0.1*1.00 + 0.1*0.00 + 0.1*0.00 = 0.8000
+=================================================================
+
+========= compute advantage =========
+========= compute advantage done =========
+step:4 - global_seqlen/min:2551.000 - global_seqlen/max:3038.000 - global_seqlen/minmax_diff:487.000 - global_seqlen/balanced_min:2574.000 - global_seqlen/balanced_max:3015.000 - global_seqlen/mean:2794.500 - actor/kl_loss:0.003 - actor/kl_coef:0.010 - actor/entropy_loss:1.001 - actor/pg_loss:-0.300 - actor/pg_clipfrac:0.000 - actor/ppo_kl:0.000 - actor/grad_norm:32.151 - perf/mfu/actor:0.000 - perf/max_memory_allocated_gb:49.542 - perf/max_memory_reserved_gb:56.520 - perf/cpu_memory_used_gb:79.431 - actor/lr:0.000 - critic/score/mean:0.283 - critic/score/max:0.900 - critic/score/min:0.000 - critic/rewards/mean:0.283 - critic/rewards/max:0.900 - critic/rewards/min:0.000 - critic/advantages/mean:0.601 - critic/advantages/max:0.900 - critic/advantages/min:0.000 - critic/returns/mean:0.601 - critic/returns/max:0.900 - critic/returns/min:0.000 - response_length/mean:225.833 - response_length/max:702.000 - response_length/min:41.000 - response_length/clip_ratio:0.167 - prompt_length/mean:705.667 - prompt_length/max:710.000 - prompt_length/min:701.000 - prompt_length/clip_ratio:0.000 - timing_s/gen:22.630 - timing_s/old_log_prob:2.910 - timing_s/ref:2.574 - timing_s/adv:0.553 - timing_s/update_actor:11.028 - timing_s/step:39.704 - timing_per_token_ms/ref:0.461 - timing_per_token_ms/update_actor:1.973 - timing_per_token_ms/gen:16.701 - timing_per_token_ms/adv:0.099 - perf/total_num_tokens:5589.000 - perf/time_per_step:39.704 - perf/throughput:70.384
+<answer>PowerBar</answer><|im_end|>
+<think>
+My previous reasoning brought me to the conclusion that "PowerBar" was acquired by Nestlé in 2000. The "00" does not directly indicate the year of sales value for Net Sales, and perhaps the "00" was misinterpreted as another irrelevant digit. Navigating forward to the timeline for Net Sales (€ mn) in 2011, we must focus on finding information that correlates with the timeframe between 2000 and 2011.
+
+I will now closely examine the timeline for sales representations in 2011.
+
+</think>
+<search> 2011 Net Sales of beverage and packaged foods companies </search><|im_end|>
+<think>
+Although this image shows a customer pipeline but not directly the sales data per segment for 2011, I observed the 'Total # Cust/ Firms Piloting' in the Retail - Specialty segment as 2. This suggests that there's one customer involved with 1 firm that's piloting a product in the Retail - Specialty segment, which might be a part of net sales data. However, without additional clear 'Sales € mn' and specific segment descriptions, we need further verification.
+
+Since this data isn't sufficient, let's go back to the current analysis.
+
+</think>
+<think>
+I need to refine my approach by identifying and verifying the segment that represents the Net Sales data for the specific years 2000, 2001, and 2011. It appears that none of the images provided are directly related to the required Net Sales data for 2000, 2001, or 2011 for specific countries. The next step involves reevaluating what field contains the 2011 data for the country with 65 stores.
+
+Now, I'll look again at the timeline to achieve the correct year and the right segment.
+
+</think>
+<search>Nestlé's Net Sales 2000-2011 </search><|im_end|>
+<search>An matrix of Top 100 Swirl Makers for 2011 </search>
+<think>
+Let’s consider the facts. Nestlé's most recent releases or possible upcoming acquisitions date to 2011. The timeline’s lack of specific numbers restricts clearer identification of each segment and its exact associates for Net Sales that needed verification.
+
+Because of lack of information from Nestlé's latest Net Sales data for 2011 or specific country data coupled with incorrect segmented separation from timeline alone, we shall need a different perspective.
+
+Looking at the provided search result for 2011's top Swirl Makers for Nestlé, we can spot Italy along with this preferred brand’s estimated Net Sales could't ascertain quickly the insight into specific year, Net Sales data or identifying definite timeline dataset.
+
+I might need to focus back to earlier steps and search details of specific Net Sales data_statement(2011 or corporate data) for companies for abrupt insight into what the Nestlé company might have been in control of and illustrating its country. Your search result may provide more accurate voltage.
+
+</think><|im_end|>
+ACTIVE_TRAJ_NUM: [6, 3, 3, 2, 2, 2]
+Debug: batch.non_tensor_batch keys => dict_keys(['id', 'data_source', 'ability', 'reward_model', 'extra_info', 'raw_prompt_ids', 'index', 'uid', 'multi_modal_inputs', 'multi_modal_data', 'retrievaled_images'])
+Debug: example extra_info => {'answer': '1985', 'content_type': 'Nan', 'file_name': 'cage-vella-march-18-2014-140320025754-phpapp02_95.pdf', 'index': 9012, 'question': 'When was Friskies launched?', 'reason_type': 'SingleHop', 'reference_page': array([5]), 'split': 'test'}
+========= compute log prob =========
+===============ref log prob==================
+=====================eval model start=====================
+=====================eval model end=====================
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 0.0000
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*0.00 + 0.1*0.00 = 0.1000
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 0.6131
+  - Model Eval Score (from RM)         : 1.0000
+  - Weighted Calculation: 0.7*1.00 + 0.1*1.00 + 0.1*0.61 + 0.1*0.00 = 0.8613
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 1.0000
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*1.00 + 0.1*0.00 = 0.2000
+=================================================================
+
+========= compute advantage =========
+========= compute advantage done =========
+step:5 - global_seqlen/min:4957.000 - global_seqlen/max:5032.000 - global_seqlen/minmax_diff:75.000 - global_seqlen/balanced_min:4884.000 - global_seqlen/balanced_max:5105.000 - global_seqlen/mean:4994.500 - actor/kl_loss:0.006 - actor/kl_coef:0.010 - actor/entropy_loss:1.660 - actor/pg_loss:-0.033 - actor/pg_clipfrac:0.000 - actor/ppo_kl:0.000 - actor/grad_norm:2.881 - perf/mfu/actor:0.000 - perf/max_memory_allocated_gb:49.542 - perf/max_memory_reserved_gb:56.527 - perf/cpu_memory_used_gb:79.585 - actor/lr:0.000 - critic/score/mean:0.194 - critic/score/max:0.861 - critic/score/min:0.000 - critic/rewards/mean:0.194 - critic/rewards/max:0.861 - critic/rewards/min:0.000 - critic/advantages/mean:0.241 - critic/advantages/max:0.861 - critic/advantages/min:0.000 - critic/returns/mean:0.241 - critic/returns/max:0.861 - critic/returns/min:0.000 - response_length/mean:950.333 - response_length/max:2819.000 - response_length/min:41.000 - response_length/clip_ratio:0.167 - prompt_length/mean:714.500 - prompt_length/max:727.000 - prompt_length/min:700.000 - prompt_length/clip_ratio:0.000 - timing_s/gen:61.540 - timing_s/old_log_prob:3.516 - timing_s/ref:3.052 - timing_s/adv:0.726 - timing_s/update_actor:12.521 - timing_s/step:81.361 - timing_per_token_ms/ref:0.306 - timing_per_token_ms/update_actor:1.254 - timing_per_token_ms/gen:10.793 - timing_per_token_ms/adv:0.073 - perf/total_num_tokens:9989.000 - perf/time_per_step:81.361 - perf/throughput:61.387
+<|im_end|>
+<think>
+The image provided shows the number of people who liked the Quill Partners TVC powerpoint slide deck in March 2012 and in March 2011. Here is the data from the chart below:
+
+- Marketers - March 2012: 5; March 2011: 4
+- Decision Makers - March 2012: 6; March 2011: 3
+- B2B navigator - March 2012: 4; March 2011: 3
+
+From the data, we can calculate the difference in the number of people who liked the Quill Partners TVC powerpoint slide deck between these two time periods for each segment.
+
+To determine who liked the Quill Partners TVC powerpoint slide deck more, we compare the totals and any significant positive or negative trends observed across the different decision-making segments.
+</think>
+<search>Who likes Quill Partners TVC powerpoint slide deck more, Marketers or Decision Makers</search><|im_end|>
+<think>
+I discovered that there are differences in the number of companies and categories within the traditional TV and digital video player ecosystems. The image above shows a comparison between traditional TV landscape and the Video LUMScape. The traditional TV ecosystem includes 19 categories of companies, with 4 representatives like Disney, licenses to Tarzan discovery, and TiVo, which collectively account for approximately $150 billion and $1.5 billion spending.
+
+On the other hand, the Video LUMScape, displaying 36 buckets, includes over 400 companies. Each of these companies accounts for approximately $15 million. Therefore, the traditional TV ecosystem has half as many categories of companies and a quarter of the number of players compared to digital video.
+</think>
+<answer>The traditional TV ecosystem has half as many categories of companies and a quarter of the number of players compared to digital video players.</answer><|im_end|>
+ACTIVE_TRAJ_NUM: [6, 3, 3, 0]
+Debug: batch.non_tensor_batch keys => dict_keys(['id', 'data_source', 'ability', 'reward_model', 'extra_info', 'raw_prompt_ids', 'index', 'uid', 'multi_modal_inputs', 'multi_modal_data', 'retrievaled_images'])
+Debug: example extra_info => {'answer': '674555', 'content_type': 'Nan', 'file_name': 'nosqldatabases-140607004845-phpapp01_95.pdf', 'index': 3809, 'question': 'What is the difference in number of people who like Parineeti Chopra compared to Shuddh Desi Romance?', 'reason_type': 'SingleHop', 'reference_page': array([18]), 'split': 'test'}
+========= compute log prob =========
+===============ref log prob==================
+=====================eval model start=====================
+=====================eval model end=====================
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 1.0000
+  - Model Eval Score (from RM)         : 1.0000
+  - Weighted Calculation: 0.7*1.00 + 0.1*1.00 + 0.1*1.00 + 0.1*0.00 = 0.9000
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 0.0000
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*0.00 + 0.1*0.00 = 0.1000
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 0.0000
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*0.00 + 0.1*0.00 = 0.1000
+=================================================================
+
+========= compute advantage =========
+========= compute advantage done =========
+step:6 - global_seqlen/min:3539.000 - global_seqlen/max:4104.000 - global_seqlen/minmax_diff:565.000 - global_seqlen/balanced_min:3571.000 - global_seqlen/balanced_max:4072.000 - global_seqlen/mean:3821.500 - actor/kl_loss:0.002 - actor/kl_coef:0.010 - actor/entropy_loss:1.264 - actor/pg_loss:-0.333 - actor/pg_clipfrac:0.000 - actor/ppo_kl:0.000 - actor/grad_norm:3.100 - perf/mfu/actor:0.000 - perf/max_memory_allocated_gb:49.542 - perf/max_memory_reserved_gb:56.527 - perf/cpu_memory_used_gb:84.864 - actor/lr:0.000 - critic/score/mean:0.183 - critic/score/max:0.900 - critic/score/min:0.000 - critic/rewards/mean:0.183 - critic/rewards/max:0.900 - critic/rewards/min:0.000 - critic/advantages/mean:0.280 - critic/advantages/max:0.900 - critic/advantages/min:0.000 - critic/returns/mean:0.280 - critic/returns/max:0.900 - critic/returns/min:0.000 - response_length/mean:563.833 - response_length/max:1042.000 - response_length/min:116.000 - response_length/clip_ratio:0.167 - prompt_length/mean:710.000 - prompt_length/max:718.000 - prompt_length/min:700.000 - prompt_length/clip_ratio:0.000 - timing_s/gen:32.399 - timing_s/old_log_prob:3.121 - timing_s/ref:2.767 - timing_s/adv:4.305 - timing_s/update_actor:11.839 - timing_s/step:54.441 - timing_per_token_ms/ref:0.362 - timing_per_token_ms/update_actor:1.549 - timing_per_token_ms/gen:9.577 - timing_per_token_ms/adv:0.563 - perf/total_num_tokens:7643.000 - perf/time_per_step:54.441 - perf/throughput:70.195
+<answer>PowerBar</answer><|im_end|>
+<search>Step 3 in the Webinar flow context</search><|im_end|>
+<answer>Deploy</answer><|im_end|>
+<think>
+To achieve the indicated recommendation of growing 2.5x the category average (given in the search history), you would need to use an audit of economic recommendations detailing a suitable plan for each category. This way, you can create a report showing accurate data on economic growth in different categories.
+</think>
+<search>economic recommendations on category average growth</search>
+<think>
+I reviewed the search results and found a report provided by McKinsey and Co. that details the top economic recommendations influencing growth in categories. This report doesn't directly address the recommendation on category average growth, so I need to pinpoint the relevant information within the source.
+
+Let's attempt to locate the specific recommendation related to category growth in that report.
+</think>
+<search>category average category growth recommendation</search>
+<answer>The most recommended approach to achieve growth, according to the Skoll Foundation, is by utilizing economic recommendations, resulting in 2.5x higher growth in category average compared to the regular category average growth.</answer><|im_end|>
+ACTIVE_TRAJ_NUM: [6, 4, 4, 3, 2, 2]
+Debug: batch.non_tensor_batch keys => dict_keys(['id', 'data_source', 'ability', 'reward_model', 'extra_info', 'raw_prompt_ids', 'index', 'uid', 'multi_modal_inputs', 'multi_modal_data', 'retrievaled_images'])
+Debug: example extra_info => {'answer': 'Normally open', 'content_type': 'Nan', 'file_name': 'plcandscadaprojectppt-141114065707-conversion-gate01_95.pdf', 'index': 9635, 'question': 'Which electric switch is true when input or output status bit controlling the contact is 1?', 'reason_type': 'SingleHop', 'reference_page': array([19]), 'split': 'test'}
+========= compute log prob =========
+===============ref log prob==================
+=====================eval model start=====================
+=====================eval model end=====================
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 0.6309
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*0.63 + 0.1*0.00 = 0.1631
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 1.0000
+  - Model Eval Score (from RM)         : 1.0000
+  - Weighted Calculation: 0.7*1.00 + 0.1*1.00 + 0.1*1.00 + 0.1*0.00 = 0.9000
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 1.0000
+  - Model Eval Score (from RM)         : 1.0000
+  - Weighted Calculation: 0.7*1.00 + 0.1*1.00 + 0.1*1.00 + 0.1*0.00 = 0.9000
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 0.0000
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*0.00 + 0.1*0.00 = 0.1000
+=================================================================
+
+========= compute advantage =========
+========= compute advantage done =========
+step:7 - global_seqlen/min:5338.000 - global_seqlen/max:5582.000 - global_seqlen/minmax_diff:244.000 - global_seqlen/balanced_min:5365.000 - global_seqlen/balanced_max:5555.000 - global_seqlen/mean:5460.000 - actor/kl_loss:0.001 - actor/kl_coef:0.010 - actor/entropy_loss:0.905 - actor/pg_loss:-0.354 - actor/pg_clipfrac:0.000 - actor/ppo_kl:0.000 - actor/grad_norm:6.997 - perf/mfu/actor:0.000 - perf/max_memory_allocated_gb:49.542 - perf/max_memory_reserved_gb:56.527 - perf/cpu_memory_used_gb:86.141 - actor/lr:0.000 - critic/score/mean:0.344 - critic/score/max:0.900 - critic/score/min:0.000 - critic/rewards/mean:0.344 - critic/rewards/max:0.900 - critic/rewards/min:0.000 - critic/advantages/mean:0.430 - critic/advantages/max:0.900 - critic/advantages/min:0.000 - critic/returns/mean:0.430 - critic/returns/max:0.900 - critic/returns/min:0.000 - response_length/mean:1112.167 - response_length/max:2471.000 - response_length/min:41.000 - response_length/clip_ratio:0.167 - prompt_length/mean:707.833 - prompt_length/max:711.000 - prompt_length/min:706.000 - prompt_length/clip_ratio:0.000 - timing_s/gen:55.472 - timing_s/old_log_prob:3.564 - timing_s/ref:3.134 - timing_s/adv:3.153 - timing_s/update_actor:13.843 - timing_s/step:79.173 - timing_per_token_ms/ref:0.287 - timing_per_token_ms/update_actor:1.268 - timing_per_token_ms/gen:8.313 - timing_per_token_ms/adv:0.289 - perf/total_num_tokens:10920.000 - perf/time_per_step:79.173 - perf/throughput:68.963
+<|im_end|>
+<answer>
+The task cannot be completed without a relevant image and clear verbal question to determine the height of a Flip-Chip.
+</answer><|im_end|>
+ACTIVE_TRAJ_NUM: [6, 2, 0]
+Debug: batch.non_tensor_batch keys => dict_keys(['id', 'data_source', 'ability', 'reward_model', 'extra_info', 'raw_prompt_ids', 'index', 'uid', 'multi_modal_inputs', 'multi_modal_data', 'retrievaled_images'])
+Debug: example extra_info => {'answer': '~3.2', 'content_type': 'Nan', 'file_name': 'flipchip1-150216080723-conversion-gate01_95.pdf', 'index': 1352, 'question': 'What is the height of the Flip-Chip in milimeters?', 'reason_type': 'SingleHop', 'reference_page': array([8]), 'split': 'test'}
+========= compute log prob =========
+===============ref log prob==================
+=====================eval model start=====================
+=====================eval model end=====================
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 1.0000
+  - Model Eval Score (from RM)         : 1.0000
+  - Weighted Calculation: 0.7*1.00 + 0.1*1.00 + 0.1*1.00 + 0.1*0.00 = 0.9000
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 0.0000
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*0.00 + 0.1*0.00 = 0.1000
+=================================================================
+
+========= compute advantage =========
+========= compute advantage done =========
+step:8 - global_seqlen/min:2359.000 - global_seqlen/max:2979.000 - global_seqlen/minmax_diff:620.000 - global_seqlen/balanced_min:2505.000 - global_seqlen/balanced_max:2833.000 - global_seqlen/mean:2669.000 - actor/kl_loss:0.022 - actor/kl_coef:0.010 - actor/entropy_loss:0.781 - actor/pg_loss:-0.300 - actor/pg_clipfrac:0.000 - actor/ppo_kl:0.000 - actor/grad_norm:16.459 - perf/mfu/actor:0.000 - perf/max_memory_allocated_gb:49.542 - perf/max_memory_reserved_gb:56.527 - perf/cpu_memory_used_gb:86.488 - actor/lr:0.000 - critic/score/mean:0.167 - critic/score/max:0.900 - critic/score/min:0.000 - critic/rewards/mean:0.167 - critic/rewards/max:0.900 - critic/rewards/min:0.000 - critic/advantages/mean:0.495 - critic/advantages/max:0.900 - critic/advantages/min:0.000 - critic/returns/mean:0.495 - critic/returns/max:0.900 - critic/returns/min:0.000 - response_length/mean:185.167 - response_length/max:593.000 - response_length/min:41.000 - response_length/clip_ratio:0.167 - prompt_length/mean:704.500 - prompt_length/max:712.000 - prompt_length/min:701.000 - prompt_length/clip_ratio:0.000 - timing_s/gen:21.994 - timing_s/old_log_prob:3.129 - timing_s/ref:2.636 - timing_s/adv:2.810 - timing_s/update_actor:10.930 - timing_s/step:41.506 - timing_per_token_ms/ref:0.494 - timing_per_token_ms/update_actor:2.047 - timing_per_token_ms/gen:19.796 - timing_per_token_ms/adv:0.526 - perf/total_num_tokens:5338.000 - perf/time_per_step:41.506 - perf/throughput:64.304
+<|im_end|>
+<think>
+The image provided does not show any timeline related to the brand acquisition or delta. To accurately answer the question, a proper image or information source that provides details about Delta Air Lines' CEO changes over time is required. Since the image given does not relate to the question, I will not be able to write an answer based on this information. However, I will search for this missing information.
+</think>
+<search>Delta Air Lines CEO history</search><|im_end|>
+<answer>Richard Anderson</answer><|im_end|>
+ACTIVE_TRAJ_NUM: [6, 4, 3, 0]
+Debug: batch.non_tensor_batch keys => dict_keys(['id', 'data_source', 'ability', 'reward_model', 'extra_info', 'raw_prompt_ids', 'index', 'uid', 'multi_modal_inputs', 'multi_modal_data', 'retrievaled_images'])
+Debug: example extra_info => {'answer': 'richard anderson', 'content_type': 'Nan', 'file_name': '2015deltainvestordaypresentation-151217114114_95.pdf', 'index': 8540, 'question': 'Who is the chief executive officer at delta?', 'reason_type': 'SingleHop', 'reference_page': array([3]), 'split': 'test'}
+========= compute log prob =========
+===============ref log prob==================
+=====================eval model start=====================
+=====================eval model end=====================
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 1.0000
+  - Model Eval Score (from RM)         : 1.0000
+  - Weighted Calculation: 0.7*1.00 + 0.1*1.00 + 0.1*1.00 + 0.1*0.00 = 0.9000
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 1.0000
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*1.00 + 0.1*0.00 = 0.2000
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 0.6131
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*0.61 + 0.1*0.00 = 0.1613
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 0.0000
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*0.00 + 0.1*0.00 = 0.1000
+=================================================================
+
+========= compute advantage =========
+========= compute advantage done =========
+step:9 - global_seqlen/min:3626.000 - global_seqlen/max:3785.000 - global_seqlen/minmax_diff:159.000 - global_seqlen/balanced_min:3642.000 - global_seqlen/balanced_max:3769.000 - global_seqlen/mean:3705.500 - actor/kl_loss:0.021 - actor/kl_coef:0.010 - actor/entropy_loss:1.152 - actor/pg_loss:-0.367 - actor/pg_clipfrac:0.000 - actor/ppo_kl:0.000 - actor/grad_norm:7.103 - perf/mfu/actor:0.000 - perf/max_memory_allocated_gb:49.542 - perf/max_memory_reserved_gb:56.836 - perf/cpu_memory_used_gb:105.082 - actor/lr:0.000 - critic/score/mean:0.227 - critic/score/max:0.900 - critic/score/min:0.000 - critic/rewards/mean:0.227 - critic/rewards/max:0.900 - critic/rewards/min:0.000 - critic/advantages/mean:0.319 - critic/advantages/max:0.900 - critic/advantages/min:0.000 - critic/returns/mean:0.319 - critic/returns/max:0.900 - critic/returns/min:0.000 - response_length/mean:527.500 - response_length/max:920.000 - response_length/min:142.000 - response_length/clip_ratio:0.167 - prompt_length/mean:707.667 - prompt_length/max:730.000 - prompt_length/min:702.000 - prompt_length/clip_ratio:0.000 - timing_s/gen:29.862 - timing_s/old_log_prob:3.511 - timing_s/ref:2.979 - timing_s/adv:8.297 - timing_s/update_actor:11.607 - timing_s/step:56.261 - timing_per_token_ms/ref:0.402 - timing_per_token_ms/update_actor:1.566 - timing_per_token_ms/gen:9.435 - timing_per_token_ms/adv:1.120 - perf/total_num_tokens:7411.000 - perf/time_per_step:56.261 - perf/throughput:65.863
+<think>
+In the image which doesn’t provide a timeline of acquisitions for Nestlé, I need to focus on the section that presumably displays corporate acquisitions over time. However, since there's no timeline in the image provided, my initial approach to find the acquisition of a specific brand year does not apply. After scrolling and searching through the information, no suitable gaps were found within the image context provided that could accurately identify the time frame or acquisition instances similar to what was illustrated in the previous Q&A series about Nestléous acquisitions.
+</think><|im_end|>
+<search>methodology for deriving value using CAP rates</search><|im_end|>
+<answer>Direct Capitalization</answer><|im_end|>
+ACTIVE_TRAJ_NUM: [6, 2, 2, 0]
+Debug: batch.non_tensor_batch keys => dict_keys(['id', 'data_source', 'ability', 'reward_model', 'extra_info', 'raw_prompt_ids', 'index', 'uid', 'multi_modal_inputs', 'multi_modal_data', 'retrievaled_images'])
+Debug: example extra_info => {'answer': 'Direct Capitalization', 'content_type': 'Nan', 'file_name': 'howtovaluecommercialrealestate101-120620220144-phpapp01_95.pdf', 'index': 9198, 'question': 'What is the methodology using CAP rates to derive value is known as?', 'reason_type': 'SingleHop', 'reference_page': array([12]), 'split': 'test'}
+========= compute log prob =========
+===============ref log prob==================
+=====================eval model start=====================
+=====================eval model end=====================
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 0.6131
+  - Model Eval Score (from RM)         : 0.0000
+  - Weighted Calculation: 0.7*0.00 + 0.1*1.00 + 0.1*0.61 + 0.1*0.00 = 0.1613
+=================================================================
+
+
+==================== DEBUG REWARD COMPONENTS ====================
+  - Initial Score (from compute_score) : 1.0000
+  - Reflect Score (from compute_score) : 0.0000
+  - NDCG Score (retrieval quality)     : 1.0000
+  - Model Eval Score (from RM)         : 1.0000
+  - Weighted Calculation: 0.7*1.00 + 0.1*1.00 + 0.1*1.00 + 0.1*0.00 = 0.9000
+=================================================================
+
+========= compute advantage =========
+========= compute advantage done =========
+step:10 - global_seqlen/min:3160.000 - global_seqlen/max:3398.000 - global_seqlen/minmax_diff:238.000 - global_seqlen/balanced_min:3160.000 - global_seqlen/balanced_max:3398.000 - global_seqlen/mean:3279.000 - actor/kl_loss:0.052 - actor/kl_coef:0.010 - actor/entropy_loss:1.046 - actor/pg_loss:-0.054 - actor/pg_clipfrac:0.000 - actor/ppo_kl:0.000 - actor/grad_norm:3.524 - perf/mfu/actor:0.000 - perf/max_memory_allocated_gb:49.542 - perf/max_memory_reserved_gb:56.836 - perf/cpu_memory_used_gb:86.684 - actor/lr:0.000 - critic/score/mean:0.177 - critic/score/max:0.900 - critic/score/min:0.000 - critic/rewards/mean:0.177 - critic/rewards/max:0.900 - critic/rewards/min:0.000 - critic/advantages/mean:0.377 - critic/advantages/max:0.900 - critic/advantages/min:0.000 - critic/returns/mean:0.377 - critic/returns/max:0.900 - critic/returns/min:0.000 - response_length/mean:382.833 - response_length/max:1110.000 - response_length/min:41.000 - response_length/clip_ratio:0.167 - prompt_length/mean:710.167 - prompt_length/max:731.000 - prompt_length/min:702.000 - prompt_length/clip_ratio:0.000 - timing_s/gen:29.752 - timing_s/old_log_prob:2.941 - timing_s/ref:2.637 - timing_s/adv:7.831 - timing_s/update_actor:11.227 - timing_s/step:54.397 - timing_per_token_ms/ref:0.402 - timing_per_token_ms/update_actor:1.712 - timing_per_token_ms/gen:12.953 - timing_per_token_ms/adv:1.194 - perf/total_num_tokens:6558.000 - perf/time_per_step:54.397 - perf/throughput:60.279
+<|im_end|>

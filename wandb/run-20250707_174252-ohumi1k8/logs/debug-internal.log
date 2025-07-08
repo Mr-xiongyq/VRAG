@@ -1,0 +1,7 @@
+{"time":"2025-07-07T17:42:52.845156852+08:00","level":"INFO","msg":"stream: starting","core version":"0.20.1","symlink path":"/data3/xiongyuqi/VRAG3/wandb/run-20250707_174252-ohumi1k8/logs/debug-core.log"}
+{"time":"2025-07-07T17:42:53.402524246+08:00","level":"INFO","msg":"stream: created new stream","id":"ohumi1k8"}
+{"time":"2025-07-07T17:42:53.402592979+08:00","level":"INFO","msg":"stream: started","id":"ohumi1k8"}
+{"time":"2025-07-07T17:42:53.402604043+08:00","level":"INFO","msg":"writer: Do: started","stream_id":"ohumi1k8"}
+{"time":"2025-07-07T17:42:53.402636767+08:00","level":"INFO","msg":"sender: started","stream_id":"ohumi1k8"}
+{"time":"2025-07-07T17:42:53.402622689+08:00","level":"INFO","msg":"handler: started","stream_id":"ohumi1k8"}
+{"time":"2025-07-07T17:42:53.718902059+08:00","level":"INFO","msg":"Starting system monitor"}
