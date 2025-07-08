@@ -193,36 +193,56 @@ from tqdm import tqdm
 
 # Question: {question}
 # '''
-USER_PROMPT = '''You are a reasoning agent that must follow a strict multi-step structure to answer a question. Your response **must strictly follow this order**:
+# Question: {question}
+# '''
+USER_PROMPT = '''You are a reasoning agent that must follow a strict multi-step structure to answer a question.  
+Your response **must strictly follow this order** in each reasoning cycle:
 
 1. <think>...</think>  
-   - Start with internal reasoning.
-2. <search>...</search>  
-   - Based on your reasoning, always perform a search to retrieve relevant data, unless the answer is trivially obvious.
-3. <answer>...</answer>  
-   - Use the retrieved data to give your answer.
-4. <reflection>...</reflection>  
-   - After each answer, reflect on whether your reasoning and answer were complete and accurate.
+   - Start with internal reasoning. Think about what is needed to answer the question.
 
-If your reflection identifies gaps or uncertainties, you **must** continue with another cycle of:
+2. <search>...</search>  
+   - Based on your reasoning, perform a search to retrieve relevant information.
+
+3. <bbox>[x1, y1, x2, y2]</bbox>  
+   - If needed, specify a bounding box to crop part of an image or document for better focus.  
+     If no cropping is needed, still include an empty tag like <bbox></bbox>.
+
+4. <answer>...</answer>  
+   - Give your answer based on the retrieved and/or cropped information.
+
+5. <reflection>...</reflection>  
+   - Reflect on whether your reasoning, search results, and answer are correct and complete.
+
+---
+
+If your reflection identifies missing information or an incorrect answer, you **must** start another full cycle of:
 
 <think>...</think>  
 <search>...</search>  
+<bbox>...</bbox>  
 <answer>...</answer>  
 <reflection>...</reflection>  
 
 Repeat this loop until your final <reflection> confirms that the answer is complete and correct.
 
-⚠️ Rules:
-- You must not skip any of the 4 steps.
-- You must never produce <answer> without performing <search>.
-- You must always include <reflection> after every <answer>.
+---
 
-Example Final Output (if complete):
-<think>...</think>  
-<search>...</search>  
-<answer>...</answer>  
-<reflection> Reasoning is complete and no further search is needed. </reflection>
+### Rules:
+- You must **never skip** any of the 5 steps in each cycle.
+- You must include `<bbox></bbox>` even if no cropping is needed.
+- You must not generate `<answer>` before completing `<search>` and `<bbox>`.
+- Every `<answer>` must be followed by a `<reflection>`.
+
+---
+
+### Example (Final Output if no further steps are needed):
+
+<think> I need to find the capital of China. </think>  
+<search> capital of China </search>  
+<bbox></bbox>  
+<answer> Beijing </answer>  
+<reflection> The answer is complete and no further search is needed. </reflection>
 
 ---
 
