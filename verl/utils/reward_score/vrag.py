@@ -111,7 +111,9 @@ def compute_format_reward_only(predict_str: str, ground_truth: str, extra_info) 
     predict_str = remove_text_between_tags(predict_str)
 
     tag_patterns = {
+        'think': re.compile(r'<think>.*?</think>', re.DOTALL),
         'search': re.compile(r'<search>.*?</search>', re.DOTALL),
+        'bbox': re.compile(r'<bbox>.*?</bbox>', re.DOTALL),
         'answer': re.compile(r'<answer>.*?</answer>', re.DOTALL),
         'reflection': re.compile(r'<reflection>.*?</reflection>', re.DOTALL),
     }
@@ -121,7 +123,8 @@ def compute_format_reward_only(predict_str: str, ground_truth: str, extra_info) 
         if re.search(pattern, predict_str):
             score += 1.0
 
-    return score / len(tag_patterns)  # 结果 ∈ [0.0, 1.0]
+    return score / len(tag_patterns)  # ∈ [0.0, 1.0]
+
 # def compute_score(predict_str: str, ground_truth: str, extra_info) -> tuple:
 #     """
 #     主函数：返回 (回答准确得分, 反思得分)
