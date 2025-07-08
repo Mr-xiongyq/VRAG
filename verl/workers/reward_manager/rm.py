@@ -225,19 +225,58 @@ class RMManager:
             )
             
             final_score = initial_score # 默认最终分数为初始分数
+            
 
             if initial_score > 0.0:
-                # --- NDCG 计算 ---
-                retrievaled_images_basename_list = [
-                    os.path.basename(item.rstrip('/')).split(".jpg")[0].replace("_page_", "_") 
-                    for item in data_item.non_tensor_batch['retrievaled_images']
-                ]
-                reference_images_basename_list = [
-                    f'{extra_info["file_name"].split(".pdf")[0]}_{page}' 
-                    for page in extra_info["reference_page"].tolist()
-                ]
-                ndcg_value = ndcg(retrievaled_images_basename_list, reference_images_basename_list)
+                print("\n==================== DEBUG: START ====================")
+                print(f"[DEBUG] initial_score = {initial_score:.4f}")
+                print(f"[DEBUG] question = {extra_info.get('question', 'N/A')}")
+                print(f"[DEBUG] file_name = {extra_info.get('file_name', 'N/A')}")
+                print(f"[DEBUG] reference_page = {extra_info.get('reference_page', 'N/A')}")
                 
+                # 打印回答信息
+                print(f"[DEBUG] Ground Truth Answer: {ground_truth}")
+                print(f"[DEBUG] Model Answer (raw): {response_str}")
+
+                generated_answer = get_answer_from_predict_str(response_str)
+                print(f"[DEBUG] Model Answer (parsed): {generated_answer}")
+
+                # Safe retrieval
+                retrievaled_images = data_item.non_tensor_batch.get('retrievaled_images', [])
+                print(f"[DEBUG] raw retrievaled_images = {retrievaled_images}")
+
+                if retrievaled_images:
+                    retrievaled_images_basename_list = [
+                        os.path.basename(item.rstrip('/')).split(".jpg")[0].replace("_page_", "_") 
+                        for item in retrievaled_images
+                    ]
+                else:
+                    retrievaled_images_basename_list = []
+                    print("[WARNING] retrievaled_images is empty or missing.")
+
+                print(f"[DEBUG] retrievaled_images_basename_list = {retrievaled_images_basename_list}")
+
+                reference_images_basename_list = []
+                if "file_name" in extra_info and "reference_page" in extra_info:
+                    reference_images_basename_list = [
+                        f'{extra_info["file_name"].split(".pdf")[0]}_{page}' 
+                        for page in extra_info["reference_page"]
+                    ]
+                else:
+                    print("[WARNING] file_name or reference_page missing in extra_info")
+
+                print(f"[DEBUG] reference_images_basename_list = {reference_images_basename_list}")
+
+                if retrievaled_images_basename_list:
+                    ndcg_value = ndcg(retrievaled_images_basename_list, reference_images_basename_list)
+                else:
+                    ndcg_value = 0.0
+
+                print(f"[NDCG] value = {ndcg_value:.4f}")
+                print("==================== DEBUG: END ====================\n", flush=True)
+                print(f"[NDCG] retrievaled={retrievaled_images_basename_list}")
+                print(f"[NDCG] reference={reference_images_basename_list}")
+                print(f"[NDCG] value={ndcg_value}", flush=True)
                 # --- 获取外部模型评估分数 ---
                 model_eval_score = eval_results.pop(0)
 
