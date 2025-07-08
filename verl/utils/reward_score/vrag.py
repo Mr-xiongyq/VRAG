@@ -46,37 +46,81 @@ def calculate_anls(gold_labels, prediction, threshold=0.7):
         max_scores.append(score)
     return max(max_scores)
 
+# def compute_reflection_reward(predict_str: str, ground_truth: str) -> float:
+#     """
+#     根据是否反思、是否修正成功，计算反思奖励。
+#     """
+#     from Levenshtein import distance as levenshtein_distance
+
+#     answers = re.findall(r'<answer>(.*?)</answer>', predict_str, re.DOTALL)
+#     reflection_used = '<reflection>' in predict_str
+
+#     if not answers:
+#         return 0.0
+
+#     first_answer = answers[0].strip()
+#     ld_first = levenshtein_distance(first_answer, ground_truth)
+#     first_correct = (ld_first / max(len(first_answer), len(ground_truth))) < 0.3
+
+#     final_answer = answers[-1].strip()
+#     ld_final = levenshtein_distance(final_answer, ground_truth)
+#     final_correct = (ld_final / max(len(final_answer), len(ground_truth))) < 0.3
+
+#     if first_correct:
+#         return 1.0
+#     elif not first_correct and final_correct and reflection_used:
+#         return 0.5
+#     elif not first_correct and not final_correct and reflection_used:
+#         return 0.1
+#     elif not first_correct and not reflection_used:
+#         return 0.0
+#     elif first_correct and not final_correct and reflection_used:
+#         return -0.25
+#     return 0.0
+import re
+from Levenshtein import distance as levenshtein_distance
+
 def compute_reflection_reward(predict_str: str, ground_truth: str) -> float:
     """
-    根据是否反思、是否修正成功，计算反思奖励。
+    计算反思奖励：
+    - 如果首轮就答对 → 奖励 1.0
+    - 如果答错但经过反思后答对 → 奖励 0.7
+    - 如果答错+反思后仍错 → 奖励 0.3
+    - 如果答错+没反思 → 奖励 0.0
+    - 如果答对后反思反而搞错了 → 惩罚 -0.3
     """
-    from Levenshtein import distance as levenshtein_distance
 
+    # 提取所有答案
     answers = re.findall(r'<answer>(.*?)</answer>', predict_str, re.DOTALL)
-    reflection_used = '<reflection>' in predict_str
+    reflections = re.findall(r'<reflection>(.*?)</reflection>', predict_str, re.DOTALL)
 
     if not answers:
         return 0.0
 
-    first_answer = answers[0].strip()
-    ld_first = levenshtein_distance(first_answer, ground_truth)
-    first_correct = (ld_first / max(len(first_answer), len(ground_truth))) < 0.3
+    reflection_used = len(reflections) > 0
 
-    final_answer = answers[-1].strip()
-    ld_final = levenshtein_distance(final_answer, ground_truth)
-    final_correct = (ld_final / max(len(final_answer), len(ground_truth))) < 0.3
+    def is_correct(pred: str, gt: str, threshold=0.3):
+        if not pred.strip():
+            return False
+        ld = levenshtein_distance(pred.strip(), gt.strip())
+        return (ld / max(len(pred.strip()), len(gt.strip()))) < threshold
 
+    first_correct = is_correct(answers[0], ground_truth)
+    final_correct = is_correct(answers[-1], ground_truth)
+
+    # case 1: 一开始就答对
     if first_correct:
-        return 1.0
-    elif not first_correct and final_correct and reflection_used:
-        return 0.5
-    elif not first_correct and not final_correct and reflection_used:
-        return 0.1
-    elif not first_correct and not reflection_used:
-        return 0.0
-    elif first_correct and not final_correct and reflection_used:
-        return -0.25
-    return 0.0
+        if final_correct:
+            return 1.0  # 完整地思考 + 保持准确
+        else:
+            return -0.3  # 本来答对反而越改越错
+
+    # case 2: 一开始答错
+    if not reflection_used:
+        return 0.0  # 没有反思还答错
+    if final_correct:
+        return 0.7  # 反思后答对
+    return 0.3  # 反思后还是错
 
 def remove_text_between_tags(text):
     pattern = r'<\|im_start\|>user.*?<\|im_end\|>'
