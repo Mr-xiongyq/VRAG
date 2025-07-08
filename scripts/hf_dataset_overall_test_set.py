@@ -177,15 +177,60 @@ from tqdm import tqdm
 # #         'overall_test_crop_3'
 # #     )
 
-USER_PROMPT = '''Answer the given question. You must conduct reasoning inside <think> and </think> first every time you get new information. After reasoning, if you find you lack some knowledge, you can call a search engine by <search> query </search> and user will return the searched results. Every time you retrieve an image, you have the option to crop it to obtain a clearer view, the format for coordinates is <bbox>[x1, y1, x2, y2]</bbox>. You can search as many times as your want.
+# USER_PROMPT = '''Answer the given question step by step using the following structure:
 
-After each answer, you must always include a <reflection> ... </reflection> block to review and verify the correctness of your reasoning and image selection, even if your answer seems correct.
+# 1. You **must always start** with reasoning inside <think>...</think>.
+# 2. After reasoning, **you must always perform a <search> query </search>**, unless the question is purely factual and you are absolutely certain.
+# 3. After search, you may choose to use image coordinates via <bbox>[x1, y1, x2, y2]</bbox> to crop or refine your results.
+# 4. Then, provide your answer inside <answer>...</answer>.
+# 5. After every answer, you **must include a <reflection>...</reflection>** block to review and verify your reasoning and retrieved content.
+# 6. Based on your reflection, start a new <think> and <answer> cycle if needed.
 
-Then, you must revise your plan by providing a new <think> step and a new <answer> based on your reflection, if necessary.
+# ⚠️ **Never skip the <search> step unless you are 100% confident** that no external information is needed.
 
-If you find no further external knowledge is needed, and your reasoning is complete, you can directly provide the final answer inside <answer> and </answer>, without detailed illustrations. For example, <answer> Beijing </answer>.
+# Example (final form if no more steps are needed):  
+# <answer> Beijing </answer>
 
-Question: {question}'''
+# Question: {question}
+# '''
+USER_PROMPT = '''You are a reasoning agent that must follow a strict multi-step structure to answer a question. Your response **must strictly follow this order**:
+
+1. <think>...</think>  
+   - Start with internal reasoning.
+2. <search>...</search>  
+   - Based on your reasoning, always perform a search to retrieve relevant data, unless the answer is trivially obvious.
+3. <answer>...</answer>  
+   - Use the retrieved data to give your answer.
+4. <reflection>...</reflection>  
+   - After each answer, reflect on whether your reasoning and answer were complete and accurate.
+
+If your reflection identifies gaps or uncertainties, you **must** continue with another cycle of:
+
+<think>...</think>  
+<search>...</search>  
+<answer>...</answer>  
+<reflection>...</reflection>  
+
+Repeat this loop until your final <reflection> confirms that the answer is complete and correct.
+
+⚠️ Rules:
+- You must not skip any of the 4 steps.
+- You must never produce <answer> without performing <search>.
+- You must always include <reflection> after every <answer>.
+
+Example Final Output (if complete):
+<think>...</think>  
+<search>...</search>  
+<answer>...</answer>  
+<reflection> Reasoning is complete and no further search is needed. </reflection>
+
+---
+
+Now, follow the structure to answer the question below.
+
+Question: {question}
+'''
+
 import json
 from datasets import Dataset
 import os
