@@ -85,21 +85,14 @@ class LLMGenerationManager:
         
 
     def _postprocess_responses(self, responses: torch.Tensor) -> torch.Tensor:
-        """Process responses to stop at search operation or answer operation."""
-        
-        responses_str = self.tokenizer.batch_decode(
-            responses, 
-            skip_special_tokens=True
-        )
+        responses_str = self.tokenizer.batch_decode(responses, skip_special_tokens=True)
 
         def extract_tags(text):
-            pattern = r"<(think|search|bbox|answer|reflection)>(.*?)</\1>"
+            # 加入 reflection 支持
+            pattern = r"<(answer|search|think|bbox|reflection)>(.*?)</\1>"
             matches = re.findall(pattern, text, re.DOTALL)
-            result = "\n".join([f"<{tag}>{content.strip()}</{tag}>" for tag, content in matches])
-            return result
+            return "\n".join([f"<{tag}>{content}</{tag}>" for tag, content in matches])
 
-
-        responses_str = self.tokenizer.batch_decode(responses, skip_special_tokens=True)
         responses_str = [extract_tags(resp) + self.tokenizer.eos_token for resp in responses_str]
         responses = self._batch_tokenize(responses_str)
         return responses, responses_str
@@ -569,34 +562,20 @@ class LLMGenerationManager:
         return final_output
 
     def execute_predictions(self, predictions: List[str], pad_token: str, active_mask=None, do_search=True) -> List[str]:
-        """
-        Execute predictions across multiple environments.
-        NOTE: the function is the actual `step` function in the environment
-        NOTE penalty_for_invalid is not included in observation shown to the LLM
-        
-        Args:
-            envs: List of environment instances
-            predictions: List of action predictions
-            pad_token: Token to use for padding
-            
-        Returns:
-            List of observation strings
-        """
         cur_actions, contents = self.postprocess_predictions(predictions)
         next_obs, dones = [], []
-        
+
         bbox_list = [content for action, content in zip(cur_actions, contents) if action == 'bbox']
         search_queries = [content for action, content in zip(cur_actions, contents) if action == 'search']
+
         if do_search:
+            search_results = []
             if len(search_queries) > 0:
                 batch_size = 100
-                search_results = []
                 for i in range(0, len(search_queries), batch_size):
                     batch_queries = search_queries[i:i + batch_size]
                     response = requests.get(self.config.search_url, params={"queries": batch_queries})
-                    search_results_single_batch = response.json()
-                    search_results.extend(search_results_single_batch)
-                assert len(search_results) == sum([1 for action in cur_actions if action == 'search'])
+                    search_results.extend(response.json())
             else:
                 search_results = []
         else:
@@ -606,124 +585,70 @@ class LLMGenerationManager:
             if not active:
                 next_obs.append('')
                 dones.append(1)
-
-            elif action == "done":
-                next_obs.append('')
-                dones.append(1)
-
-            elif action == "search":
-                next_obs.append(search_results.pop(0))
-                dones.append(0)
-
-            elif action == "bbox":
-                try:
-                    bbox_value = json.loads(contents[i])
-                    if (len(bbox_value) == 4 and all(v >= 0 for v in bbox_value)):
-                        next_obs.append(bbox_value)
-                    else:
-                        raise ValueError()
-                except:
-                    next_obs.append('\n<|im_start|>user\nInvalid bbox format. Retry.\n<|im_end|>\n<|im_start|>assistant\n')
-                dones.append(0)
-
-            elif action == "answer":
-                next_obs.append('')
-                dones.append(0)  # answer 不能终止，需要 reflection 配合
-
             else:
-                # invalid / incomplete
-                next_obs.append('\n<|im_start|>user\nYour previous output missed required steps. Use <think>, <search>, <bbox>, <answer>, <reflection>.\n<|im_end|>\n<|im_start|>assistant\n')
-                dones.append(0)
+                if action == 'answer':
+                    next_obs.append('')
+                    dones.append(0)  # 等待 reflection 后终止
+                elif action == 'reflection':
+                    # 用关键词判断是否完成
+                    if re.search(r'(stop|complete|no further action|无需继续|完成|正确)', contents[i], re.IGNORECASE):
+                        next_obs.append('')
+                        dones.append(1)
+                    else:
+                        next_obs.append('')
+                        dones.append(0)
+                elif action == 'search':
+                    next_obs.append(search_results.pop(0))
+                    dones.append(0)
+                elif action == 'bbox':
+                    try:
+                        bbox_value = json.loads(bbox_list.pop(0))
+                        if len(bbox_value) == 4 and all(v >= 0 for v in bbox_value):
+                            next_obs.append(bbox_value)
+                        else:
+                            raise ValueError("Invalid bbox value")
+                    except:
+                        next_obs.append(self._fallback_invalid_msg())
+                    dones.append(0)
+                else:
+                    next_obs.append(self._fallback_invalid_msg())
+                    dones.append(0)
 
-            
         assert len(search_results) == 0
-
         return next_obs, dones
 
-    # def postprocess_predictions(self, predictions: List[str]) -> Tuple[List[str], List[str]]:
-    #     actions = []
-    #     contents = []
 
-    #     for prediction in predictions:
-    #         if not isinstance(prediction, str):
-    #             raise ValueError(f"Invalid prediction type: {type(prediction)}")
-
-    #         # 提取所有标签
-    #         pattern = r'<(think|search|bbox|answer|reflection)>(.*?)</\1>'
-    #         matches = re.findall(pattern, prediction, re.DOTALL)
-    #         tag_dict = {tag: content.strip() for tag, content in matches}
-
-    #         if len(tag_dict) < 5:
-    #             actions.append("invalid")
-    #             contents.append("")
-    #             continue
-
-    #         # 决定执行动作
-    #         if tag_dict.get("search"):
-    #             actions.append("search")
-    #             contents.append(tag_dict["search"])
-    #         elif tag_dict.get("bbox"):
-    #             actions.append("bbox")
-    #             contents.append(tag_dict["bbox"])
-    #         elif tag_dict.get("answer"):
-    #             actions.append("answer")
-    #             contents.append(tag_dict["answer"])
-    #         else:
-    #             actions.append("invalid")
-    #             contents.append("")
-
-    #         # 特别标记是否终止
-    #         reflection = tag_dict.get("reflection", "").lower()
-    #         if any(keyword in reflection for keyword in ["complete", "no further", "finished", "nothing else"]):
-    #             actions[-1] = "done"
-
-
-    #     return actions, contents
-    def postprocess_predictions(self, predictions: List[str]) -> Tuple[List[str], List[str]]:
+    def postprocess_predictions(self, predictions: List[Any]) -> Tuple[List[str], List[str]]:
+        """
+        支持解析完整结构标签，包括 reflection。
+        返回 action 和 content（用于环境交互或判断是否 done）。
+        """
         actions = []
         contents = []
 
         for prediction in predictions:
-            if not isinstance(prediction, str):
+            if isinstance(prediction, str):
+                pattern = r'<(search|answer|bbox|reflection)>(.*?)</\1>'
+                match = re.search(pattern, prediction, re.DOTALL)
+                if match:
+                    action = match.group(1)
+                    content = match.group(2).strip()
+                else:
+                    action = None
+                    content = ''
+            else:
                 raise ValueError(f"Invalid prediction type: {type(prediction)}")
 
-            # 抽取所有字段内容
-            pattern = r'<(think|search|bbox|answer|reflection)>(.*?)</\1>'
-            matches = re.findall(pattern, prediction, re.DOTALL)
-            tag_dict = defaultdict(str)
-            for tag, content in matches:
-                tag_dict[tag] = content.strip()
-
-            # ✅ 检查是否包含全部结构
-            required_tags = ['think', 'search', 'bbox', 'answer', 'reflection']
-            if not all(tag in tag_dict and tag_dict[tag] for tag in required_tags):
-                actions.append("invalid")
-                contents.append("")
-                continue
-
-            # 🔁 根据 reflection 内容判断是否完成
-            reflection = tag_dict["reflection"].lower()
-            if any(word in reflection for word in ["complete", "no further", "finished", "nothing else"]):
-                actions.append("done")
-                contents.append("")  # done doesn't need content
-                continue
-
-            # ✅ 默认顺序处理行为：按优先级执行搜索 / bbox / answer（当前一步）
-            if tag_dict["search"]:
-                actions.append("search")
-                contents.append(tag_dict["search"])
-            elif tag_dict["bbox"]:
-                actions.append("bbox")
-                contents.append(tag_dict["bbox"])
-            elif tag_dict["answer"]:
-                actions.append("answer")
-                contents.append(tag_dict["answer"])
-            else:
-                actions.append("invalid")
-                contents.append("")
-
+            actions.append(action)
+            contents.append(content)
         return actions, contents
 
 
-
-
+    def _fallback_invalid_msg(self):
+        return (
+            '\n<|im_start|>user\nYour previous action is invalid. '
+            'You must conduct reasoning inside <think> and </think> first every time you get new information. '
+            'If you need external knowledge, use <search>...<\\search>. '
+            'After you have all information, answer inside <answer>. '
+            'Finally, reflect with <reflection> to check if your answer is sufficient.\n<|im_end|>\n<|im_start|>assistant\n'
+        )
