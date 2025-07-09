@@ -151,23 +151,37 @@ def remove_text_between_tags(text):
 #     search_match = re.search(search_pattern, predict_str)
 #     return 1.0 if answer_match and search_match else 0.0
 
+# def compute_format_reward_only(predict_str: str, ground_truth: str, extra_info) -> float:
+#     predict_str = remove_text_between_tags(predict_str)
+
+#     tag_patterns = {
+#         'think': re.compile(r'<think>.*?</think>', re.DOTALL),
+#         'search': re.compile(r'<search>.*?</search>', re.DOTALL),
+#         'bbox': re.compile(r'<bbox>.*?</bbox>', re.DOTALL),
+#         'answer': re.compile(r'<answer>.*?</answer>', re.DOTALL),
+#         'reflection': re.compile(r'<reflection>.*?</reflection>', re.DOTALL),
+#     }
+
+#     score = 0.0
+#     for tag, pattern in tag_patterns.items():
+#         if re.search(pattern, predict_str):
+#             score += 1.0
+
+#     return score / len(tag_patterns)  # ∈ [0.0, 1.0]
 def compute_format_reward_only(predict_str: str, ground_truth: str, extra_info) -> float:
     predict_str = remove_text_between_tags(predict_str)
 
-    tag_patterns = {
-        'think': re.compile(r'<think>.*?</think>', re.DOTALL),
-        'search': re.compile(r'<search>.*?</search>', re.DOTALL),
-        'bbox': re.compile(r'<bbox>.*?</bbox>', re.DOTALL),
-        'answer': re.compile(r'<answer>.*?</answer>', re.DOTALL),
-        'reflection': re.compile(r'<reflection>.*?</reflection>', re.DOTALL),
-    }
+    # 定义每一轮中应出现的结构标签顺序
+    tag_sequence = ['<think>', '<search>', '<think>', '<bbox>', '<think>', '<answer>', '<reflection>']
+    pattern = re.compile(r'(<think>.*?</think>\s*<search>.*?</search>\s*<think>.*?</think>\s*<bbox>.*?</bbox>\s*<think>.*?</think>\s*<answer>.*?</answer>\s*<reflection>.*?</reflection>)', re.DOTALL)
 
-    score = 0.0
-    for tag, pattern in tag_patterns.items():
-        if re.search(pattern, predict_str):
-            score += 1.0
+    rounds = re.findall(pattern, predict_str)
 
-    return score / len(tag_patterns)  # ∈ [0.0, 1.0]
+    if not rounds:
+        return 0.0
+
+    # 每一轮完整结构占满分 1.0，最后平均
+    return len(rounds) / max(predict_str.count('<answer>'), 1)  # 防止除以 0
 
 # def compute_score(predict_str: str, ground_truth: str, extra_info) -> tuple:
 #     """
