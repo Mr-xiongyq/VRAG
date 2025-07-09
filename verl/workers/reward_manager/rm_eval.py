@@ -132,7 +132,13 @@ class RMEvalManager:
 
             extra_info = data_item.non_tensor_batch.get('extra_info', None)
 
-            score = self.compute_score(
+            # score = self.compute_score(
+            #     data_source=data_source,
+            #     solution_str=response_str,
+            #     ground_truth=ground_truth,
+            #     extra_info=extra_info,
+            # )
+            score, r_reflect = self.compute_score(
                 data_source=data_source,
                 solution_str=response_str,
                 ground_truth=ground_truth,
@@ -198,7 +204,7 @@ class RMEvalManager:
 
             extra_info = data_item.non_tensor_batch.get('extra_info', None)
 
-            score = self.compute_score(
+            score, r_reflect = self.compute_score(
                 data_source=data_source,
                 solution_str=response_str,
                 ground_truth=ground_truth,
@@ -250,15 +256,19 @@ class RMEvalManager:
             data_source = data_item.non_tensor_batch['data_source']
 
             extra_info = data_item.non_tensor_batch.get('extra_info', None)
-
-            score = self.compute_score(
+            
+            # 从 compute_score 获取初始分数和反射分数
+            initial_score, r_reflect = self.compute_score(
                 data_source=data_source,
                 solution_str=response_str,
                 ground_truth=ground_truth,
                 extra_info=extra_info,
             )
             
-            if score >0.0:
+            final_score = initial_score # 默认最终分数为初始分数
+            
+            
+            if initial_score >0.0:
                 score = eval_results.pop(0)
                 retrievaled_images_basename_list = [os.path.basename(item.rstrip('/')).split(".jpg")[0] for item in data_item.non_tensor_batch['retrievaled_images']]
                 reference_images_basename_list = [f'{extra_info["file_name"].split(".pdf")[0]}_{page}' for page in extra_info["reference_page"].tolist()]

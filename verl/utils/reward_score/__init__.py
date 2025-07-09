@@ -38,7 +38,7 @@ def _default_compute_score(data_source, solution_str, ground_truth, extra_info=N
     elif data_source in ['hiyouga/geometry3k']:
         from . import geo3k
         res = geo3k.compute_score(solution_str, ground_truth)
-    elif data_source in ['rag', 'slidevqa_test', 'slidevqa_train', 'mmlongdoc', 'vidoseek']:
+    elif data_source in ['rag', 'slidevqa_test', 'slidevqa_val','slidevqa_train', 'mmlongdoc', 'vidoseek']:
         from . import vrag
         res = vrag.compute_score(solution_str, ground_truth, extra_info)
         assert isinstance(res, tuple) and len(res) == 2
