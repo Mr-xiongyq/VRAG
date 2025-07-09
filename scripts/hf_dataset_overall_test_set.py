@@ -240,7 +240,7 @@ Repeat this loop until your final <reflection> confirms that the answer is compl
 
 <think> I need to find the capital of China. </think>  
 <search> capital of China </search>  
-<bbox></bbox>  
+<bbox>[66,236,80,350]</bbox>  
 <answer> Beijing </answer>  
 <reflection> The answer is complete and no further search is needed. </reflection>
 
