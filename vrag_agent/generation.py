@@ -93,18 +93,17 @@ class LLMGenerationManager:
         )
 
         def extract_tags(text):
-            # 定义正则表达式，匹配 <answer>...</answer>、<search>...</search> 和 <think>...</think>
-            pattern = r"<(answer|search|think|bbox)>(.*?)</\1>"
-            # 使用 findall 方法找到所有匹配的内容
+            pattern = r"<(think|search|bbox|answer|reflection)>(.*?)</\1>"
             matches = re.findall(pattern, text, re.DOTALL)
-            # 将匹配的内容重新组合成字符串
-            result = "\n".join([f"<{tag}>{content}</{tag}>" for tag, content in matches])
+            result = "\n".join([f"<{tag}>{content.strip()}</{tag}>" for tag, content in matches])
             return result
 
-        responses_str = [extract_tags(resp) + self.tokenizer.eos_token for resp in responses_str]
 
+        responses_str = self.tokenizer.batch_decode(responses, skip_special_tokens=True)
+        responses_str = [extract_tags(resp) + self.tokenizer.eos_token for resp in responses_str]
         responses = self._batch_tokenize(responses_str)
         return responses, responses_str
+
 
     def _process_next_obs(self, next_obs: List, rollings) -> torch.Tensor:
         """Process next observations from environment."""
@@ -604,64 +603,82 @@ class LLMGenerationManager:
             search_results = [''] * sum([1 for action in cur_actions if action == 'search'])
 
         for i, (action, active) in enumerate(zip(cur_actions, active_mask)):
-            
             if not active:
                 next_obs.append('')
                 dones.append(1)
+
+            elif action == "done":
+                next_obs.append('')
+                dones.append(1)
+
+            elif action == "search":
+                next_obs.append(search_results.pop(0))
+                dones.append(0)
+
+            elif action == "bbox":
+                try:
+                    bbox_value = json.loads(contents[i])
+                    if (len(bbox_value) == 4 and all(v >= 0 for v in bbox_value)):
+                        next_obs.append(bbox_value)
+                    else:
+                        raise ValueError()
+                except:
+                    next_obs.append('\n<|im_start|>user\nInvalid bbox format. Retry.\n<|im_end|>\n<|im_start|>assistant\n')
+                dones.append(0)
+
+            elif action == "answer":
+                next_obs.append('')
+                dones.append(0)  # answer 不能终止，需要 reflection 配合
+
             else:
-                if action == 'answer':
-                    next_obs.append('')
-                    dones.append(1)
-                elif action == 'search':
-                    # next_obs.append(f'\n\n<information>{search_results.pop(0).strip()}</information>\n\n')
-                    next_obs.append(search_results.pop(0))
-                    dones.append(0)
-                elif action == 'bbox':
-                    try:
-                        bbox_value = json.loads(bbox_list.pop(0))
-                        if len(bbox_value) == 4 and bbox_value[0] >= 0 and bbox_value[1] >= 0 and bbox_value[2] >= 0 and bbox_value[3] >= 0:
-                            next_obs.append(bbox_value)
-                        else:
-                            raise ValueError("Invalid bbox value")
-                    except:
-                        next_obs.append('\n<|im_start|>user\nYour previous action is invalid. You must conduct reasoning inside <think> and </think> first every time you get new information. After reasoning, if you find you lack some knowledge, you can call a search engine by <search> query </search> and user will return the searched results. Every time you retrieve an image, you have the option to crop it to obtain a clearer view, the format for coordinates is <bbox>[x1, y1, x2, y2]</bbox>. You can search as many times as your want. If you find no further external knowledge needed, you can directly provide the answer inside <answer> and </answer>, without detailed illustrations. For example, <answer> Beijing </answer>. Please try again.\n<|im_end|>\n<|im_start|>assistant\n')
-                    dones.append(0)
-                else:
-                    next_obs.append('\n<|im_start|>user\nYour previous action is invalid. You must conduct reasoning inside <think> and </think> first every time you get new information. After reasoning, if you want to search, you should put the query between <search> and </search>.\nIf you find no further external knowledge needed, you can directly provide the answer inside <answer> and </answer>, without detailed illustrations. For example, <answer> Beijing </answer>. Please try again.\n<|im_end|>\n<|im_start|>assistant\n')
-                    dones.append(0)
+                # invalid / incomplete
+                next_obs.append('\n<|im_start|>user\nYour previous output missed required steps. Use <think>, <search>, <bbox>, <answer>, <reflection>.\n<|im_end|>\n<|im_start|>assistant\n')
+                dones.append(0)
+
             
         assert len(search_results) == 0
 
         return next_obs, dones
 
-    def postprocess_predictions(self, predictions: List[Any]) -> Tuple[List[int], List[bool]]:
-        """
-        Process (text-based) predictions from llm into actions and validity flags.
-        
-        Args:
-            predictions: List of raw predictions
-            
-        Returns:
-            Tuple of (actions list, validity flags list)
-        """
+    def postprocess_predictions(self, predictions: List[str]) -> Tuple[List[str], List[str]]:
         actions = []
         contents = []
-                
+
         for prediction in predictions:
-            if isinstance(prediction, str): # for llm output
-                pattern = r'<(search|answer|bbox)>(.*?)</\1>'
-                match = re.search(pattern, prediction, re.DOTALL)
-                if match:
-                    content = match.group(2).strip()  # Return only the content inside the tags
-                    action = match.group(1)
-                else:
-                    content = ''
-                    action = None
-            else:
+            if not isinstance(prediction, str):
                 raise ValueError(f"Invalid prediction type: {type(prediction)}")
-            
-            actions.append(action)
-            contents.append(content)
-            
+
+            # 提取所有标签
+            pattern = r'<(think|search|bbox|answer|reflection)>(.*?)</\1>'
+            matches = re.findall(pattern, prediction, re.DOTALL)
+            tag_dict = {tag: content.strip() for tag, content in matches}
+
+            if len(tag_dict) < 5:
+                actions.append("invalid")
+                contents.append("")
+                continue
+
+            # 决定执行动作
+            if tag_dict.get("search"):
+                actions.append("search")
+                contents.append(tag_dict["search"])
+            elif tag_dict.get("bbox"):
+                actions.append("bbox")
+                contents.append(tag_dict["bbox"])
+            elif tag_dict.get("answer"):
+                actions.append("answer")
+                contents.append(tag_dict["answer"])
+            else:
+                actions.append("invalid")
+                contents.append("")
+
+            # 特别标记是否终止
+            reflection = tag_dict.get("reflection", "").lower()
+            if any(keyword in reflection for keyword in ["complete", "no further", "finished", "nothing else"]):
+                actions[-1] = "done"
+
+
         return actions, contents
+
+
 
