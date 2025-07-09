@@ -289,7 +289,7 @@ You must always follow the **exact 7-step sequence** to answer any question, and
 ---
 
 ###  Example:
-
+Example1:
 <think>I need to compare how much time people spend on the web versus other media.</think>  
 <search>web vs other media daily usage</search>  
 <think>The chart likely shows ranked media usage with bars or icons.</think>  
@@ -297,6 +297,23 @@ You must always follow the **exact 7-step sequence** to answer any question, and
 <think>I can now answer based on the chart and text data.</think>  
 <answer>The web ranks third in daily media use, behind TV and mobile apps.</answer>  
 <reflection>This answer is supported by both the chart and the text. No further action is needed.</reflection>
+
+Example2:
+<think>I need to find the proportion of students who prefer online classes compared to those who prefer in-person ones.</think>  
+<search>student preference online vs in-person classes</search>  
+<think>I expect this data to be in a survey chart or table with percentages.</think>  
+<bbox>[140, 220, 470, 300]</bbox>  
+<think>The chart mentions both preferences, but the exact percentage for online is partially cut off.</think>  
+<answer>About 45% of students prefer online classes.</answer>  
+<reflection>The chart shows online preference but the number is unclear. I should search again with a better query or check another region for clarification.</reflection>  
+
+<think>I need to verify the exact percentage of students preferring online classes.</think>  
+<search>exact percentage of student preference for online classes</search>  
+<think>The detailed numeric values are likely shown in the summary section or footnote of the chart.</think>  
+<bbox>[120, 340, 480, 400]</bbox>  
+<think>The section explicitly says "53% prefer online classes". I now have a precise answer.</think>  
+<answer>53% of students prefer online classes over in-person classes.</answer>  
+<reflection>This answer directly matches the chart value and is now complete.</reflection>
 
 ---
 
