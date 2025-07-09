@@ -195,61 +195,116 @@ from tqdm import tqdm
 # '''
 # Question: {question}
 # '''
-USER_PROMPT = '''You are a reasoning agent that must follow a strict multi-step structure to answer a question.  
-Your response **must strictly follow this order** in each reasoning cycle:
+# USER_PROMPT = '''You are a reasoning agent that must follow a strict multi-step structure to answer a question.  
+# Your response **must strictly follow this order** in each reasoning cycle:
 
-1. <think>...</think>  
-   - Start with internal reasoning. Think about what is needed to answer the question.
+# 1. <think>...</think>  
+#    - Start with internal reasoning. Think about what is needed to answer the question.
 
-2. <search>...</search>  
-   - Based on your reasoning, perform a search to retrieve relevant information.
+# 2. <search>...</search>  
+#    - Based on your reasoning, perform a search to retrieve relevant information.
 
-3. <bbox>[x1, y1, x2, y2]</bbox>  
-   - If needed, specify a bounding box to crop part of an image or document for better focus.  
-     If no cropping is needed, still include an empty tag like <bbox></bbox>.
+# 3. <bbox>[x1, y1, x2, y2]</bbox>  
+#    - If needed, specify a bounding box to crop part of an image or document for better focus.  
 
-4. <answer>...</answer>  
-   - Give your answer based on the retrieved and/or cropped information.
+# 4. <answer>...</answer>  
+#    - Give your answer based on the retrieved and/or cropped information.
 
-5. <reflection>...</reflection>  
-   - Reflect on whether your reasoning, search results, and answer are correct and complete.
+# 5. <reflection>...</reflection>  
+#    - Reflect on whether your reasoning, search results, and answer are correct and complete.
+
+# ---
+
+# If your reflection identifies missing information or an incorrect answer, you **must** start another full cycle of:
+
+# <think>...</think>  
+# <search>...</search>  
+# <bbox>...</bbox>  
+# <answer>...</answer>  
+# <reflection>...</reflection>  
+
+# Repeat this loop until your final <reflection> confirms that the answer is complete and correct.
+
+# ---
+
+# ### Rules:
+# - You must **never skip** any of the 5 steps in each cycle.
+# - You must include `<bbox></bbox>` 
+# - You must not generate `<answer>` before completing `<search>` and `<bbox>`.
+# - Every `<answer>` must be followed by a `<reflection>`.
+
+# ---
+
+# ### Example (Final Output if no further steps are needed):
+
+# <think> I need to find the capital of China. </think>  
+# <search> capital of China </search>  
+# <bbox>[66,236,80,350]</bbox>  
+# <answer> Beijing </answer>  
+# <reflection> The answer is complete and no further search is needed. </reflection>
+
+# ---
+
+# Now, follow the structure to answer the question below.
+
+# Question: {question}
+# '''
+USER_PROMPT = '''
+You are a structured reasoning agent.  
+You must always follow the **exact 7-step sequence** to answer any question, and repeat as needed.
 
 ---
 
-If your reflection identifies missing information or an incorrect answer, you **must** start another full cycle of:
+###  Each reasoning cycle **must** follow this order:
 
-<think>...</think>  
-<search>...</search>  
-<bbox>...</bbox>  
-<answer>...</answer>  
-<reflection>...</reflection>  
+1. <think>...</think>  
+   - Think: What information do I need to begin answering the question?
 
-Repeat this loop until your final <reflection> confirms that the answer is complete and correct.
+2. <search>...</search>  
+   - Search the document using a carefully chosen query.
+
+3. <think>...</think>  
+   - Think: What part of the image or document should I focus on?
+
+4. <bbox>[x1, y1, x2, y2]</bbox>  
+   - Crop a region that contains the relevant visual evidence.
+
+5. <think>...</think>  
+   - Think: Do I now have enough information to answer? If so, what is it?
+
+6. <answer>...</answer>  
+   - Give your answer based on search + visual evidence.
+
+7. <reflection>...</reflection>  
+   - Reflect on whether your answer is complete and correct.  
+   - If **yes**, stop. If **no**, start a new cycle from the top.
 
 ---
 
 ### Rules:
-- You must **never skip** any of the 5 steps in each cycle.
-- You must include `<bbox></bbox>` even if no cropping is needed.
-- You must not generate `<answer>` before completing `<search>` and `<bbox>`.
-- Every `<answer>` must be followed by a `<reflection>`.
+- All 7 steps **must be present in order in each cycle**.
+- You **must not skip** any step.
+- Repeat cycles until the `<reflection>` confirms the answer is sufficient.
 
 ---
 
-### Example (Final Output if no further steps are needed):
+###  Example:
 
-<think> I need to find the capital of China. </think>  
-<search> capital of China </search>  
-<bbox>[66,236,80,350]</bbox>  
-<answer> Beijing </answer>  
-<reflection> The answer is complete and no further search is needed. </reflection>
+<think>I need to compare how much time people spend on the web versus other media.</think>  
+<search>web vs other media daily usage</search>  
+<think>The chart likely shows ranked media usage with bars or icons.</think>  
+<bbox>[110, 318, 450, 390]</bbox>  
+<think>I can now answer based on the chart and text data.</think>  
+<answer>The web ranks third in daily media use, behind TV and mobile apps.</answer>  
+<reflection>This answer is supported by both the chart and the text. No further action is needed.</reflection>
 
 ---
 
-Now, follow the structure to answer the question below.
+Now, follow the exact 7-step cycle to answer this question:
 
 Question: {question}
 '''
+
 
 import json
 from datasets import Dataset
@@ -380,17 +435,17 @@ def convert_dataset(USER_PROMPT, file_list, file_source_list, output_name):
 #         'overall_test_baseline'
 #     )
 
-# if __name__ == '__main__':
-#     convert_dataset(
-#         USER_PROMPT,
-#         ['/data3/xiongyuqi/SlideVQA/rag_dataset_raw_train.json'],
-#         ['slidevqa_test'],
-#         'slidevqa_train_crop_3'
-#     )
 if __name__ == '__main__':
     convert_dataset(
         USER_PROMPT,
-        ['/data3/xiongyuqi/SlideVQA/rag_dataset_raw_val.json'],
-        ['slidevqa_val'],
-        'overall_test_crop_3'
+        ['/data3/xiongyuqi/SlideVQA/rag_dataset_raw_train.json'],
+        ['slidevqa_test'],
+        'slidevqa_train_crop_3'
     )
+# if __name__ == '__main__':
+#     convert_dataset(
+#         USER_PROMPT,
+#         ['/data3/xiongyuqi/SlideVQA/rag_dataset_raw_val.json'],
+#         ['slidevqa_val'],
+#         'overall_test_crop_3'
+#     )

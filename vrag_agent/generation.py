@@ -640,6 +640,45 @@ class LLMGenerationManager:
 
         return next_obs, dones
 
+    # def postprocess_predictions(self, predictions: List[str]) -> Tuple[List[str], List[str]]:
+    #     actions = []
+    #     contents = []
+
+    #     for prediction in predictions:
+    #         if not isinstance(prediction, str):
+    #             raise ValueError(f"Invalid prediction type: {type(prediction)}")
+
+    #         # 提取所有标签
+    #         pattern = r'<(think|search|bbox|answer|reflection)>(.*?)</\1>'
+    #         matches = re.findall(pattern, prediction, re.DOTALL)
+    #         tag_dict = {tag: content.strip() for tag, content in matches}
+
+    #         if len(tag_dict) < 5:
+    #             actions.append("invalid")
+    #             contents.append("")
+    #             continue
+
+    #         # 决定执行动作
+    #         if tag_dict.get("search"):
+    #             actions.append("search")
+    #             contents.append(tag_dict["search"])
+    #         elif tag_dict.get("bbox"):
+    #             actions.append("bbox")
+    #             contents.append(tag_dict["bbox"])
+    #         elif tag_dict.get("answer"):
+    #             actions.append("answer")
+    #             contents.append(tag_dict["answer"])
+    #         else:
+    #             actions.append("invalid")
+    #             contents.append("")
+
+    #         # 特别标记是否终止
+    #         reflection = tag_dict.get("reflection", "").lower()
+    #         if any(keyword in reflection for keyword in ["complete", "no further", "finished", "nothing else"]):
+    #             actions[-1] = "done"
+
+
+    #     return actions, contents
     def postprocess_predictions(self, predictions: List[str]) -> Tuple[List[str], List[str]]:
         actions = []
         contents = []
@@ -648,37 +687,43 @@ class LLMGenerationManager:
             if not isinstance(prediction, str):
                 raise ValueError(f"Invalid prediction type: {type(prediction)}")
 
-            # 提取所有标签
+            # 抽取所有字段内容
             pattern = r'<(think|search|bbox|answer|reflection)>(.*?)</\1>'
             matches = re.findall(pattern, prediction, re.DOTALL)
-            tag_dict = {tag: content.strip() for tag, content in matches}
+            tag_dict = defaultdict(str)
+            for tag, content in matches:
+                tag_dict[tag] = content.strip()
 
-            if len(tag_dict) < 5:
+            # ✅ 检查是否包含全部结构
+            required_tags = ['think', 'search', 'bbox', 'answer', 'reflection']
+            if not all(tag in tag_dict and tag_dict[tag] for tag in required_tags):
                 actions.append("invalid")
                 contents.append("")
                 continue
 
-            # 决定执行动作
-            if tag_dict.get("search"):
+            # 🔁 根据 reflection 内容判断是否完成
+            reflection = tag_dict["reflection"].lower()
+            if any(word in reflection for word in ["complete", "no further", "finished", "nothing else"]):
+                actions.append("done")
+                contents.append("")  # done doesn't need content
+                continue
+
+            # ✅ 默认顺序处理行为：按优先级执行搜索 / bbox / answer（当前一步）
+            if tag_dict["search"]:
                 actions.append("search")
                 contents.append(tag_dict["search"])
-            elif tag_dict.get("bbox"):
+            elif tag_dict["bbox"]:
                 actions.append("bbox")
                 contents.append(tag_dict["bbox"])
-            elif tag_dict.get("answer"):
+            elif tag_dict["answer"]:
                 actions.append("answer")
                 contents.append(tag_dict["answer"])
             else:
                 actions.append("invalid")
                 contents.append("")
 
-            # 特别标记是否终止
-            reflection = tag_dict.get("reflection", "").lower()
-            if any(keyword in reflection for keyword in ["complete", "no further", "finished", "nothing else"]):
-                actions[-1] = "done"
-
-
         return actions, contents
+
 
 
 
