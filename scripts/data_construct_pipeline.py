@@ -361,7 +361,7 @@ def arg_parse():
     import argparse
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", type=str, default='example', help="The name of dataset")
-    parser.add_argument("--query_file", type=str, default='rag_dataset.json', help="The name of anno_file")
+    parser.add_argument("--query_file", type=str, default='VRAG/slidevqa_converted_sft.json', help="The name of anno_file")
     parser.add_argument("--experiment_type", type=str, default='cot', help="The type of experiment")
     parser.add_argument("--workers_num", type=int, default=10, help="The number of workers")
     parser.add_argument("--topk", type=int, default=10, help="The number of topk")
